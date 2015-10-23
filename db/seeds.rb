@@ -21,5 +21,11 @@ puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 
+new_post = Post.create!(
+    title: "New Post, Assignment 32",
+    body: "This is a new post added in Assignment 32"
+    )
 
-    
+new_comment = Comment.create!(
+    post: new_post,
+    body: "Comment on new post, Assignment 32")
