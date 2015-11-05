@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
     if @question.update_attributes(params.require(:question).permit(:title, :body, :resolved))
-      flash[:notice] = @question.resolved ? "Question was resolved" : "Question was updated."
+      flash[:notice] = @question.resolved ? "Question was resolved." : "Question was updated."
       redirect_to @question
     else
       flash[:error] = "There was an error updating the question.  Please try again."
