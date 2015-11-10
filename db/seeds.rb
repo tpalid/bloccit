@@ -65,6 +65,12 @@ member= User.new(
 member.skip_confirmation!
 member.save!
 
+post1 = Post.create!(
+    user: member,
+    title: "Member Post",
+    body: "Body of Member Post"
+    )
+
 
 puts "Seed finished"
 puts "#{User.count} users created"
