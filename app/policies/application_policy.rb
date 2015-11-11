@@ -7,7 +7,11 @@ class ApplicationPolicy
   end
 
   def index?
-    true
+    if user.present?
+      @posts = policy_scope(Post)
+    else
+      false
+    end
   end
 
   def show?
@@ -41,13 +45,13 @@ class ApplicationPolicy
   class Scope
     attr_reader :user, :scope
 
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
+      def initialize(user, scope)
+        @user = user
+        @scope = scope
+      end
 
-    def resolve
-      scope
+      def resolve
+        scope
+      end
     end
-  end
 end
