@@ -1,7 +1,7 @@
 class PostPolicy < ApplicationPolicy
 
     class Scope < Scope
-    attr_reader :user, :scope
+        attr_reader :user, :scope
     
         def initialize(user, scope)
             @user = user
@@ -12,8 +12,16 @@ class PostPolicy < ApplicationPolicy
             if user.admin? || user.moderator?
                 scope.all
             else
-                false
+                scope.where(:published => true)
             end
+        end
+    end
+    
+    def index?
+        if user.present?
+            @posts = policy_scope(Post)
+        else
+            false
         end
     end
 end

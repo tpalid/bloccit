@@ -7,11 +7,7 @@ class ApplicationPolicy
   end
 
   def index?
-    if user.present?
-      @posts = policy_scope(Post)
-    else
-      false
-    end
+    false
   end
 
   def show?
