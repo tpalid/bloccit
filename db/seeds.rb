@@ -41,6 +41,12 @@ topics = Topic.all
 end
 posts = Post.all
 
+posts.each do |post|
+    Summary.create!(
+        post: post,
+        description: Faker::Lorem.paragraph,
+        )
+end
 #create comments
 100.times do
     Comment.create!(
