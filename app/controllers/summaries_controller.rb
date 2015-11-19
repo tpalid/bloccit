@@ -20,9 +20,10 @@ class SummariesController < ApplicationController
   end
 
   def show
-    @topic = Topic.find(params[:id])
-    @post = @topic.post.find(params[:id])
+    @topic = Topic.find(params[:topic_id])
+    @post = @topic.posts.find(params[:post_id])
     @summary = post.summary
+    if @summary.nil?...
     authorize @summary
   end
 
@@ -46,4 +47,5 @@ class SummariesController < ApplicationController
   
   def summary_params
     params.require(:summary).permit(:description)
+  end
 end
