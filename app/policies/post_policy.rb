@@ -12,16 +12,12 @@ class PostPolicy < ApplicationPolicy
             if user.admin? || user.moderator?
                 scope.all
             else
-                scope.where(:published => true)
+                scope.where(user: user)
             end
         end
     end
     
     def index?
-        if user.present?
-            @posts = policy_scope(Post)
-        else
-            false
-        end
+        true
     end
 end
