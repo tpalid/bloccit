@@ -44,4 +44,5 @@ class PostsController < ApplicationController
       render :edit
     end
   end
+ 
 end

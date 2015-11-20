@@ -1,16 +1,14 @@
 class SummariesController < ApplicationController
   def new
-    @topic = Topic.find(params[:id])
+    @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.find(params[:post_id])
     @summary = Summary.new
-    authorize @summary
   end
   
   def create
-    @topic = Topic.find(params[:post_id])
+    @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.find(params[:post_id])
     @summary = Summary.new(summary_params)
-    authorize @summary
     if @summary.save
       redirect_to @summary, notice: "Summary was successfully saved"
     else
@@ -22,21 +20,27 @@ class SummariesController < ApplicationController
   def show
     @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.find(params[:post_id])
-    @summary = post.summary
-    if @summary.nil?...
-    authorize @summary
+    if @post.summary == nil
+      flash[:notice] = "No summary exists for this topic."
+      redirect_to [@topic, @post]
+    else
+      @summary = @post.summary
+    end
   end
 
   def edit
-    @summary = Summary.find(params[:id])
-    authorize @summary
+    @topic = Topic.find(params[:topic_id])
+    @post = @topic.posts.find(params[:post_id])
+    @summary = @post.summary
   end
   
   def update
-    @summary = Summary.find(params[:id])
-    authorize @summary
+    @topic = Topic.find(params[:topic_id])
+    @post = Post.find(params[:post_id])
+    @summary = @post.summary
     if @summary.update_attributes(summary_params)
-      redirect_to @summary
+      flash[:notice] = "Summary was saved."
+      redirect_to [@topic, @post, @post.summary]
     else 
       flash[:error] = "Error saving summary. Please try again."
       render :edit
