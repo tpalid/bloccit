@@ -14,7 +14,7 @@ end
 users = User.all
 
 #create topics
-15.times do
+100.times do
     Topic.create!(
         name: Faker::Lorem.sentence,
         description: Faker::Lorem.paragraph
@@ -31,7 +31,7 @@ topics = Topic.all
  # The `save` method then saves this User to the database.
 
 #create posts
-50.times do
+20000.times do
     Post.create!(
         user: users.sample,
         topic: topics.sample,
