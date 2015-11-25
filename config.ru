@@ -2,3 +2,5 @@
 
 require ::File.expand_path('../config/environment', __FILE__)
 run Rails.application
+
+ BetterErrors::Middleware.allow_ip! ENV['TRUSTED_IP'] if ENV['TRUSTED_IP']
