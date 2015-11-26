@@ -10,7 +10,8 @@ class SummariesController < ApplicationController
     @post = @topic.posts.find(params[:post_id])
     @summary = Summary.new(summary_params)
     if @summary.save
-      redirect_to @summary, notice: "Summary was successfully saved"
+      redirect_to @summary
+      flash[:notice] = "Summary was successfully saved"
     else
       flash[:error] = "Error creating summary, please try again."
       render :new

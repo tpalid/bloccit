@@ -3,9 +3,9 @@
 <div class="row">
     <div class='col-md-8'>
         <p><%= @post.body %></p>
-            <% if @summary %>
+            <% if @post.summary %>
                 <%= link_to "Summary", topic_post_summary_path(@topic, @post), class: "btn btn-success" %>
-            <% elsif @post.summary == nil && policy(@post).edit? %>
+            <% elsif %>
                 <%= link_to "Add Summary", new_topic_post_summary_path(@topic, @post), class: 'btn btn-success' %>
             <% end %>
             </div>
