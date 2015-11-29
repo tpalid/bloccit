@@ -1,1 +1,7 @@
-<%= @comment %>
+<div class="col-md-8">
+<%= comment.body %></br>
+submitted <%= time_ago_in_words(comment.created_at) %> ago by
+<%= comment.user.name %>
+</div>
+# undefined method name for nil class
+# why is the class nil here, but not in the first two instances?
