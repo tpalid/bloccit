@@ -1,37 +1,32 @@
 class SummariesController < ApplicationController
   def new
     @topic = Topic.find(params[:topic_id])
-    @post = @topic.posts.find(params[:post_id])
+    @post = Post.find(params[:post_id])
     @summary = Summary.new
   end
   
-  def create
+def create
     @topic = Topic.find(params[:topic_id])
-    @post = @topic.posts.find(params[:post_id])
-    @summary = Summary.new(summary_params)
+    @post = Post.find(params[:post_id])
+    @summary = Summary.new(params.require(:summary).permit(:description))
     if @summary.save
-      redirect_to @summary
+      redirect_to [@topic, @post, @summary]
       flash[:notice] = "Summary was successfully saved"
     else
       flash[:error] = "Error creating summary, please try again."
       render :new
     end
-  end
+end
 
   def show
     @topic = Topic.find(params[:topic_id])
-    @post = @topic.posts.find(params[:post_id])
-    if @post.summary == nil
-      flash[:notice] = "No summary exists for this topic."
-      redirect_to [@topic, @post]
-    else
-      @summary = @post.summary
-    end
+    @post = Post.find(params[:post_id])
+    @summary = @post.summary
   end
 
   def edit
     @topic = Topic.find(params[:topic_id])
-    @post = @topic.posts.find(params[:post_id])
+    @post = Post.find(params[:post_id])
     @summary = @post.summary
   end
   
