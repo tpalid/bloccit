@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @topic = @post.topic
     @comment = Comment.new(comment_params)
+    authorize @comment
     @comment.user_id = current_user.id
     @comment.post = @post
     if @comment.save
