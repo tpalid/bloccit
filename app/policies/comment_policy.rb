@@ -7,8 +7,8 @@ class CommentPolicy < ApplicationPolicy
         user.present?
     end
     
-    def show?
-        true
-    end
+    # def show?
+    #     true
+    # end
 
 end
