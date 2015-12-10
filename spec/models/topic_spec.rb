@@ -4,8 +4,8 @@ describe Topic do
     describe "scopes" do
         
         before do
-            @public_topic = Topic.create #default is public
-            @private_topic = Topic.create(public: false)
+            @public_topic = Topic.create!(name: "Topic1", description: "Topic1DESCription") #default is public
+            @private_topic = Topic.create!(public: false, name: "Topic1", description: "Topic1DESCription")
         end
         
         describe "publicly_viewable" do
