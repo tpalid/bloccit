@@ -47,4 +47,8 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   
   BetterErrors::Middleware.allow_ip! ENV['TRUSTED_IP'] if ENV['TRUSTED_IP']
+  
+  class Application < Rails::Application
+    config.web_console.whitelisted_ips = '24.61.8.108'
+  end
 end
