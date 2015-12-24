@@ -48,7 +48,7 @@ Rails.application.configure do
   
   BetterErrors::Middleware.allow_ip! ENV['TRUSTED_IP'] if ENV['TRUSTED_IP']
   
-  class Application < Rails::Application
-    config.web_console.whitelisted_ips = '24.61.8.108'
-  end
+  # class Application < Rails::Application
+  #   config.web_console.whitelisted_ips = '24.61.8.108'
+  # end
 end

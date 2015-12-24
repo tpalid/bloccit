@@ -1,4 +1,8 @@
 <h1><%= @user.name %></h1>
+<small>
+    <%= pluralize(@user.posts.count, 'post') %>, 
+    <div class='js-comments-count'><%= pluralize(@user.comments.count, 'comment') %> </div>
+</small>
 
 <div class="row">
     <div class="tabbable tabs-left">
